@@ -1,0 +1,42 @@
+﻿@model ContactModel
+@{ 
+    ViewData["Title"] = "联系方式";
+}
+
+@section styles{
+    <link href="~/css/pages/contact.css" rel="stylesheet" />
+}
+
+<div class="glus">
+    <div class="box tm animated lightSpeedIn">
+        <div class="content">
+            <div class="title">
+                <span>@_("联系方式")</span>
+            </div>
+            <div class="body">
+                <ul class="contact auto-height">
+                    @foreach (var item in Model.ConfigList)
+                    {
+                        <li>@item.Title：@item.Content</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="box tm sys animated lightSpeedIn">
+        <div class="content">
+            <div class="body middle">
+                <div class="rqcode-container">
+                    <img class="rqcode" src="@Model.RqCode?.Path" />
+                    <div>
+                        <p>
+                            <span style="font-size:25px;">“@_("扫一扫")”</span>
+                            <span>@_("加入我们")【@_("公众号")】</span>
+                        </p>
+                        <p>@_("更多资讯期待您的关注")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

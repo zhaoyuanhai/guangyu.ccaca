@@ -1,0 +1,53 @@
+﻿#main-body {
+    background-image: url(/images/项目信息.jpg);
+    background-size: cover;
+}
+
+.c-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .c-box ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .c-box li {
+        border-bottom: 1px solid white;
+        line-height: 41px;
+        height: 41px;
+    }
+
+    .c-box .title {
+        color: white;
+    }
+
+    .c-box .date {
+        float: right;
+    }
+
+    .c-box a.ca {
+        vertical-align: bottom;
+        line-height: 40px;
+    }
+
+.glus {
+    width: 800px !important;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-left: -400px !important;
+}
+
+.glus {
+    height: calc(100% - 100px);
+}
+
+.pager ul li {
+    margin-top: 0;
+    height: auto;
+    border-bottom: none;
+}

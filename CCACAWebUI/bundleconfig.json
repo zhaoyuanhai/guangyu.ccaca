@@ -1,0 +1,66 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/main.min.css",
+    "inputFiles": [
+      "wwwroot/css/main.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/page.min.css",
+    "inputFiles": [
+      "wwwroot/css/page.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/animate.min.css",
+    "inputFiles": [
+      "wwwroot/css/animate.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/carousel.min.css",
+    "inputFiles": [
+      "wwwroot/css/carousel.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/index.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/login.min.css",
+    "inputFiles": [
+      "wwwroot/css/login.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/sub.min.css",
+    "inputFiles": [
+      "wwwroot/css/sub.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/main.min.js",
+    "inputFiles": [
+      "wwwroot/js/main.js"
+    ]
+  }
+]

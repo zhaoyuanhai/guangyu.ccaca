@@ -1,0 +1,178 @@
+﻿@inject DbEntityContext db;
+@using CCACAWebUI.Common;
+
+@model IndexModel
+@{
+    ViewData["Title"] = "首页";
+}
+
+@section styles{
+    <link href="~/css/pages/index.css" rel="stylesheet" />
+    <link href="~/css/right-tools.css" rel="stylesheet" />
+    <link href="~/js/plugins/liMarquee/css/liMarquee.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/js/plugins/liMarquee/js/jquery.liMarquee.js"></script>
+    <script src="~/js/pages/index.js"></script>
+}
+
+<div id="one-page" class="clear">
+    <div class="o-left flt">
+        <div id="myCarousel" 
+             data-interval="2000" 
+             data-ride="carousel" carousel='Model.CarouselFigure.Where(x=>x.Type=="big")'></div>
+    </div>
+    <div class="o-center flt">
+        <div class="o-c-top">
+            <div class="f-box xminfo" style="background-image:url(/images/newactive-bg.jpg)">
+                <h2 style="color:white;">@_("最新活动")</h2>
+                <div class="limarquee">
+                    <ul>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            foreach (var item in Model.NewActive)
+                            {
+                                <li style="margin-bottom: 20px;">
+                                    <span class="block smaill-title">@item.CreateTime.ToString("yyyy年MM月dd日")</span>
+                                    <a asp-action="NewActiveItem"
+                                       asp-all-route-data='new Dictionary<string, string>() { { "id",item.ID.ToString() } }'
+                                       style="color:white">@item.Title</a>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            <div class="f-box xminfo aaa">
+                <h2>@_("项目信息")</h2>
+                <div class="limarquee">
+                    <ul>
+                        @for (var i = 0; i < 10; i++)
+                        {
+                            foreach (var item in Model.Project)
+                            {
+                                <li>
+                                    <a class="title-color isLogin"
+                                       asp-action="ProjectInfoItem"
+                                       asp-all-route-data='new Dictionary<string, string>() { { "id",item.ID.ToString()} }'
+                                       style="color:#4E4E4E;font-weight: 600;">@item.Title</a>
+                                    <span class="text-break">@Html.InnerText(item.Content)</span>
+                                    <span class="vip">会员权益</span>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="o-c-bom">
+            <img class="m-max" src="@Model.CarouselFigure.FirstOrDefault(x=>x.Type == "img1")?.Path" />
+        </div>
+    </div>
+    <div class="o-right flt xminfo" style="background-color:#F4F4F4">
+        <div class="tools" style="margin: 20px 0 20px 0;">
+            <span style="display:inline-block;font-size: 20px;">@_("行业动态")</span>
+            <span id="setyw" class="pull-right pointer focused">@_("换一组")</span>
+        </div>
+        <hr />
+        <ul class="yw">
+            @foreach (var info in Model.Infomation)
+            {
+                <li>
+                    <a asp-action="infoitem" asp-all-route-data='new Dictionary<string, string>() { { "id",info.ID.ToString() } }' class="title">
+                        @info.Title
+                    </a>
+                    <span class="item">
+                        @HtmlCommon.TextNoHTML(info.Content)
+                    </span>
+                    <span class="date">@info.CreateTime.Value.ToString("yyyy-MM-dd")</span>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="content">
+    <div class="blank-line"></div>
+    <div class="content abs">
+        <div class="bg"></div>
+    </div>
+    <div class="relt bag m-top-50 animated">
+        <div class="interval bag-box">
+            <div class="f-box c-blue">
+                <span class="logo-text">CCACA</span>
+                <div class="c-box">
+                    <h2>@Model.ConfigList[0].Title</h2>
+                    <div class="text wordspace" style="line-height: 21px;">
+                        @Html.String(Model.ConfigList[0].Content)
+                    </div>
+                </div>
+            </div>
+            <div class="f-box">
+                <img src="@Model.ConfigList[0].Cover" />
+            </div>
+        </div>
+    </div>
+    <div class="relt min animated">
+        <div class="interval min-box">
+            <div class="f-box">
+                <img src="@Model.ConfigList[1].Cover" />
+            </div>
+            <div class="f-box c-orange">
+                <div class="c-box">
+                    <h2>@Model.ConfigList[1].Title</h2>
+                    <div class="text">
+                        @Html.String(Model.ConfigList[1].Content)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relt bag  animated">
+        <div class="interval bag-box">
+            <div class="f-box c-light-blue">
+                <div class="c-box">
+                    <h2>@Model.ConfigList[2].Title</h2>
+                    <div class="wordspace" style="line-height: 21px;">
+                        @Html.String(Model.ConfigList[2].Content)
+                    </div>
+                </div>
+            </div>
+            <div class="f-box">
+                <img src="@Model.ConfigList[2].Cover" />
+            </div>
+        </div>
+    </div>
+    <div class="relt min animated">
+        <div class="interval min-box">
+            <div class="f-box">
+                <img src="@Model.CarouselFigure.Where(x=>x.Type=="img3").FirstOrDefault()?.Path" />
+            </div>
+            <div class="f-box c-violet">
+                <div class="c-box">
+                    <h2>@_("联系方式")</h2>
+                    <ul class="contact">
+                        @foreach (var item in Model.Contact)
+                        {
+                            <li>@item.Title : @item.Content</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-tools">
+    <div class="phone">
+        <span>@(Model.Contact.FirstOrDefault(x=>x.ID == Model.PhoneId)?.Content)</span>
+    </div>
+    <div class="qq">
+        <span>@(Model.Contact.FirstOrDefault(x=>x.ID == Model.QQId)?.Content)</span>
+    </div>
+    <div class="rqCode">
+        <img src="@Model.CarouselFigure.FirstOrDefault(x=>x.Type == "rqcode")?.Path" />
+    </div>
+    <div id="top" class="top"></div>
+</div>

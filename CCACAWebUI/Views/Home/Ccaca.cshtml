@@ -1,0 +1,56 @@
+﻿@model CCACAWebUI.Models.CcacaModel
+@{
+    ViewData["Title"] = "CCACA";
+    var one = Model.ConfigList.Where(x => x.ID == Model.OneId).FirstOrDefault();
+    var tow = Model.ConfigList.Where(x => x.ID == Model.TowId).FirstOrDefault();
+    var three = Model.ConfigList.Where(x => x.ID == Model.ThreeId).FirstOrDefault();
+}
+@section styles{
+    <link href="~/css/pages/ccaca.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/js/pages/vip.js"></script>
+}
+
+<div class="glus">
+    <div class="f-box tm br30 animated lightSpeedIn">
+        <div class="content">
+            <div class="title">
+                <span>@one?.Title</span>
+            </div>
+            <div class="body">
+                <div class="cc auto-height">
+                    @Html.String(one?.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="f-box bl30 animated lightSpeedIn">
+        <div class="h270 tm">
+            <div class="content">
+                <div class="title">
+                    <span>@tow?.Title</span>
+                </div>
+                <div class="cc">
+                    <div class="auto-height">
+                        @Html.String(tow?.Content)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h270 tm mgr-top-60 pb0">
+            <div class="content">
+                <div class="title">
+                    <span>@_("协作单位")</span>
+                </div>
+                <div class="body">
+                    <div class="linkcons auto-height"
+                         icons="Model.Company" page-count="4"></div>
+                </div>
+            </div>
+            <a class="bts lf"></a>
+            <a class="bts rf"></a>
+        </div>
+    </div>
+</div>

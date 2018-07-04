@@ -1,0 +1,97 @@
+﻿.right-tools {
+    position: fixed;
+    right: 0;
+    height: 132px;
+    width: 30px;
+    background-color: white;
+    top: 50%;
+    margin-top: -66px;
+}
+
+    .right-tools > div {
+        height: 30px;
+        margin-bottom: 4px;
+        background-color: #7A6E6E;
+        position: relative;
+        cursor: pointer;
+    }
+
+        .right-tools > div:before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 2;
+            background-color: #7A6E6E;
+        }
+
+        .right-tools > div:after {
+            content: "";
+            display: block;
+            height: 25px;
+            width: 25px;
+            background-size: cover;
+            margin: 3px;
+            position: absolute;
+            z-index: 3;
+        }
+
+        .right-tools > div.phone:after {
+            background-image: url(/images/phone.png);
+        }
+
+        .right-tools > div.qq:after {
+            background-image: url(/images/qq.png);
+        }
+
+        .right-tools > div.rqCode:after {
+            background-image: url(/images/rqCode.png);
+        }
+
+        .right-tools > div.top:after {
+            background-image: url(/images/top.png);
+        }
+
+        .right-tools > div > span {
+            color: white;
+        }
+
+            .right-tools > div > span:before {
+                content: "";
+                display: inline-block;
+                width: 5px;
+                height: 0px;
+            }
+
+        .right-tools > div * {
+            display: block;
+            position: absolute;
+        }
+
+        .right-tools > div > * {
+            transition: width,height 1s,1s;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #7A6E6E;
+            line-height: 30px;
+        }
+
+        .right-tools > div:hover > * {
+            width: 130px;
+        }
+
+        .right-tools > div.phone:hover > * {
+            width: 150px;
+        }
+
+        .right-tools > div.qq:hover > * {
+            width: 120px;
+        }
+
+        .right-tools > div:hover > img {
+            margin-right: 30px;
+            width: 130px;
+            height: 130px;
+        }

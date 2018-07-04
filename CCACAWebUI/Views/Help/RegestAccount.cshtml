@@ -1,0 +1,58 @@
+﻿@model AccountModel
+@{
+    ViewData["Title"] = "账号注册";
+}
+@section styles{
+    <link href="~/css/form.css" rel="stylesheet" />
+    <style>
+        .menu {
+            display: none;
+        }
+
+        #main-body {
+            background-color: #008cff !important;
+        }
+
+        .form-container {
+            margin-top: -270px !important;
+        }
+
+        .login-container .form-container {
+            margin-top: 80px !important
+        }
+    </style>
+}
+
+@section scripts{
+    <script src="~/js/pages/registeraccount.js"></script>
+}
+
+<section class="form-container">
+    <div class="form-login">
+        <h1>@_("账号注册")</h1>
+        <form method="post" asp-action="regestaccount" asp-controller="help">
+            <p>
+                @Html.TextBoxFor(x => x.UserName, new { required = "required", id = "userName", placeholder = _("账号") })
+            </p>
+            <p>
+                @Html.TextBoxFor(x => x.Email, new { required = "required", id = "email", placeholder = _("邮箱") })
+            </p>
+            <p>
+                @Html.TextBoxFor(x => x.Phone, new { required = "required", id = "phone", placeholder = _("手机号") })
+            </p>
+            <p>
+                @Html.TextBoxFor(x => x.RealName, new { required = "required", id = "realName", placeholder = _("用户名") })
+            </p>
+            <p>
+                @Html.PasswordFor(x => x.Password, new { required = "required", id = "password", placeholder = _("密码") })
+            </p>
+            <p>
+                <input required type="password" id="repassword" name="repassword" placeholder="@_("再次输入密码")" />
+            </p>
+            <p has-error="@_(ViewBag.ErrorMsg)"></p>
+            <p class="submit">
+                <input type="submit" id="commit" name="commit" value="@_("注册")" />
+            </p>
+        </form>
+    </div>
+</section>

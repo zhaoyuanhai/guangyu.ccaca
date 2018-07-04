@@ -1,0 +1,23 @@
+﻿@model T_ProjectInfo
+@{
+    ViewData["Title"] = "项目信息详情";
+}
+
+@section styles{
+    <link href="~/css/pages/projectinfoitem.css" rel="stylesheet" />
+}
+
+<div class="glus">
+    <div class="box tm animated lightSpeedIn">
+        <div class="content">
+            <div class="title text-center">
+                <span>@Model.Title</span>
+            </div>
+            <div class="body">
+                <div style="color:white;">
+                    @Html.String(Model.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

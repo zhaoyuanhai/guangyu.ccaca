@@ -1,0 +1,54 @@
+﻿@using IoPath = System.IO.Path;
+@model List<T_File>
+@{
+    ViewData["Title"] = "资料下载";
+}
+@section styles{
+    <link href="~/css/simplePagination.css" rel="stylesheet" />
+    <link href="~/css/pages/resourcedown.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/js/jquery.simplePagination.js"></script>
+    <script>
+        $('#dark-pagination').pagination({
+            pages: @ViewBag.PageCount,
+            currentPage:@ViewBag.PageIndex,
+            prevText: "@_("上一页")",
+            nextText:"@_("下一页")",
+            cssStyle: 'dark-theme',
+            onPageClick: function (pageNumber, event) {
+                location.href = location.pathname + "?pageIndex=" + pageNumber;
+            }
+        });
+    </script>
+}
+
+<div class="glus">
+    <div class="box tm animated lightSpeedIn">
+        <div class="content" style="height:100%;">
+            <div class="title">
+                <span>@_("资料下载")</span>
+            </div>
+            <div class="body">
+                <ul class="line auto-height">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <span class="name">@item.Name</span>
+                            <span class="tools">
+                                <a href="~/pdfviewer/web/viewer.html?file=@item.Path" target="_blank">预览</a>
+                                <a href="@item.Path" target="_blank" download="@(item.Name + IoPath.GetExtension(item.Path))">下载</a>
+                            </span>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="footer">
+                <div class="pager" style="width:calc(100% - 140px);">
+                    <ul id="dark-pagination" class="pagination"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

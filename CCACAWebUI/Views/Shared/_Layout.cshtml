@@ -1,0 +1,155 @@
+﻿@using Microsoft.Extensions.Primitives;
+@inject CCACAWebUI.DB.DbEntityContext DbContext;
+@{
+    var routeData = this.ViewContext.RouteData.Values;
+    var languageDict = new Dictionary<string, string>();
+    var languageId = routeData["LanguageId"];
+    string routeAction = routeData["action"].ToString();
+    if (languageId != null)
+    {
+        languageDict.Add("LanguageId", languageId.ToString());
+    }
+
+    Dictionary<string, string> route = new Dictionary<string, string>();
+    if (this.Context.Request.Query["ReturnUrl"] != StringValues.Empty)
+    {
+        route.Add("ReturnUrl", this.Context.Request.Query["ReturnUrl"]);
+    }
+}
+
+@functions {
+bool Compar(string key, params string[] values)
+{
+    return values.Any(x => x.Equals(key, StringComparison.CurrentCultureIgnoreCase));
+}
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@_(ViewBag.Title) - @_("拉丁美洲税务合作中心")</title>
+    @RenderSection("styles", required: false)
+
+    <link rel="stylesheet" href="~/css/carousel.css" />
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/sub.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/login-new.css" />
+    <link rel="stylesheet" href="~/css/form.css" />
+
+</head>
+<body>
+    <div class="container">
+        <div id="head">
+            <div class="tools clear">
+                <div class="logo">
+                    <a asp-action="index" asp-controller="home">
+                        <img src="~/images/logo.png" alt="logo" />
+                    </a>
+                </div>
+                <ul class="h-list clear pull-right lang-list">
+                    @foreach (var item in DbContext.Languages)
+                    {
+                        var dict = new Dictionary<string, string>() { { "LanguageId", item.ID.ToString() } };
+                        <li active-expre='Convert.ToInt32(routeData["LanguageId"]) == item.ID'>
+                            <a asp-action="@routeData["action"]"
+                               asp-all-route-data="dict">@item.Lang</a>
+                        </li>
+                    }
+                    <li>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <a onclick="Login(true)" style="color:#00c1de;">@_("账号登入")</a>
+                        }
+                        else
+                        {
+                            <a  asp-action="Logout" asp-controller="Help">@GetUserProp("name") (@_("退出"))</a> 
+                        }
+                    </li>
+                </ul>
+            </div>
+            <div class="menu">
+                <ul class="h-list theme-white m-left-50">
+                    <li active-expre='Compar(routeAction,"Index")'>
+                        <a asp-action="Index" asp-all-route-data="languageDict">@_("首页")</a>
+                    </li>
+                    <li active-expre='Compar(routeAction,"Ccaca")'>
+                        <a asp-action="Ccaca" asp-all-route-data="languageDict">@_("CCACA")</a>
+                    </li>
+                    <li active-expre='Compar(routeAction,"Vip")'>
+                        <a asp-action="Vip" asp-all-route-data="languageDict">@_("会员专享")</a>
+                    </li>
+                    <li active-expre='Compar(routeAction,"NewActive", "NewActiveItem")'>
+                        <a asp-action="NewActive" asp-all-route-data="languageDict">@_("最新活动")</a>
+                    </li>
+                    <li active-expre='Compar(routeAction,"NewInfo", "InfoItem")'>
+                        <a asp-action="NewInfo" asp-all-route-data="languageDict">@_("行业动态")</a>
+                    </li>
+                    <li active-expre='Compar(routeAction,"ResourceDown")'>
+                        <a asp-action="ResourceDown" asp-all-route-data="languageDict">@_("资料下载")</a>
+                    </li>
+                    <li active-expre='Compar(routeAction,"ProjectInfo", "ProjectInfoItem")'>
+                        <a asp-action="ProjectInfo" asp-all-route-data="languageDict">@_("项目信息")</a>
+                    </li>
+                    <li active-expre='Compar(routeAction,"Contact")'>
+                        <a asp-action="Contact" asp-all-route-data="languageDict">@_("联系方式")</a>
+                    </li>
+                    <li class="move"></li>
+                </ul>
+            </div>
+        </div>
+        <div id="main-body">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div class="login-container" onclick="Login(false)">
+        <div class="login-bg"></div>
+        <div class="login" onclick="event.stopPropagation()">
+            <section class="form-container">
+                <div class="form-login login">
+                    <div class="title">
+                        @_("用户登陆")
+                        <span class="close" onclick="Login(false)"></span>
+                    </div>
+                    <form method="post" id="myForm" asp-action="login"
+                          asp-controller="help"
+                          asp-all-route-data="route">
+                        <p>
+                            <input name="UserName" type="text" placeholder="@_("账号")">
+                        </p>
+                        <p>
+                            <input name="Password" type="password" placeholder="@_("密码")">
+                        </p>
+                        <p class="error-placehoder">
+                            <span class="error"></span>
+                        </p>
+                        <p class="submit">
+                            <span class="pull-left">
+                                <a class="pull-left b-blue" asp-action="forgetpassword" asp-controller="help">@_("忘记密码")</a>
+                                <a class="pull-left b-blue" style="margin-left: 25px;" asp-action="regestaccount" asp-controller="help">@_("账号注册")</a>
+                            </span>
+                            <input type="button" style="margin-top: -6px;" name="commit" value="@_("登录")" />
+                        </p>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        var apihref = '@Url.Action("islogin","help")';
+    </script>
+    <script src="~/lib/modernizr-2.6.2.js"></script>
+    <script src="~/lib/event.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/sub.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/islogin.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

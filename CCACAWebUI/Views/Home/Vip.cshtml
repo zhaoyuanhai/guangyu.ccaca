@@ -1,0 +1,52 @@
+﻿@model VipModel
+@{
+    ViewData["Title"] = "会员专享";
+}
+@section styles{
+    <link href="~/css/pages/vip.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/js/pages/vip.js"></script>
+}
+
+<div class="glus">
+    <div class="f-box tm br30 animated lightSpeedIn">
+        <div class="content">
+            <div class="title">
+                <span>@_("会员特权")</span>
+            </div>
+            <div class="body">
+                <div class="auto-height">
+                    <ol class="hytq">
+                        @foreach (var item in Model.Member)
+                        {
+                            <li>@item.Item</li>
+                        }
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="f-box bl30 animated lightSpeedIn">
+        <div class="vip-link tm">
+            <div class="content" style="overflow:hidden;">
+                <div class="title">
+                    <span>@_("会员连接")</span>
+                </div>
+                <div class="body">
+                    <div class="linkcons auto-height" 
+                         icons="Model.MemberLink" page-count="8"></div>
+                </div>
+            </div>
+            <a class="bts lf"></a>
+            <a class="bts rf"></a>
+        </div>
+        <div class="vip-reg tm">
+            <div class="content" style="background-image:url(@Model.Carousel.Path);
+                    height:100%;
+                    border-radius: 10px;">
+            </div>
+        </div>
+    </div>
+</div>

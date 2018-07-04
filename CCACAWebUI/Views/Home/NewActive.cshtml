@@ -1,0 +1,60 @@
+﻿@model List<T_NewActive>
+@{
+    ViewData["Title"] = "最新活动";
+}
+
+@section styles{
+    <link href="~/css/simplePagination.css" rel="stylesheet" />
+    <link href="~/css/pages/newactive.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/js/jquery.simplePagination.js"></script>
+    <script>
+        $('#dark-pagination').pagination({
+            pages: @ViewBag.PageCount,
+            currentPage:@ViewBag.PageIndex,
+            prevText: "@_("上一页")",
+            nextText:"@_("下一页")",
+            cssStyle: 'dark-theme',
+            onPageClick: function (pageNumber, event) {
+                location.href = location.pathname + "?pageIndex=" + pageNumber;
+            }
+        });
+    </script>
+}
+
+<div class="glus">
+    <div class="box tm animated lightSpeedIn">
+        <div class="content">
+            <div class="title">
+                <span>@_("最新活动")</span>
+            </div>
+            <div class="body">
+                <ul class="auto-height">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <div>
+                                <a href="@Url.Action("NewActiveItem",new { id= item.ID })">
+                                    <h2>
+                                        @item.CreateTime.ToString("yyyy年MM月dd日")，
+                                        @item.Title
+                                    </h2>
+                                </a>
+                                <div class="info">
+                                    @item.Content
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="footer">
+                <div class="pager" style="width:830px;">
+                    <ul id="dark-pagination" class="pagination"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

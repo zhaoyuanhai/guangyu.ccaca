@@ -1,0 +1,60 @@
+﻿@model List<T_ProjectInfo>
+@{
+    ViewData["Title"] = "项目信息";
+}
+@section styles{
+    <link href="~/css/simplePagination.css" rel="stylesheet" />
+    <link href="~/css/pages/projectinfo.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/js/jquery.simplePagination.js"></script>
+    <script src="~/js/pages/projectinfo.js"></script>
+    <script>
+        $('#dark-pagination').pagination({
+            pages: @ViewBag.PageCount,
+            currentPage:@ViewBag.PageIndex,
+            prevText: "@_("上一页")",
+            nextText:"@_("下一页")",
+            cssStyle: 'dark-theme',
+            onPageClick: function (pageNumber, event) {
+                location.href = location.pathname + "?pageIndex=" + pageNumber;
+            }
+        });
+    </script>
+    <script>
+        var apihref = '@Url.Action("islogin","help")';
+    </script>
+    <script src="~/js/proj_info.js"></script>
+}
+
+<div class="c-box">
+    <div class="glus">
+        <div class="f-box tm animated lightSpeedIn" style="width:100%">
+            <div class="content" style="height:100%;">
+                <div class="title">
+                    <span>@_("项目信息")</span>
+                </div>
+                <div class="body">
+                    <ul class="auto-height">
+                        @foreach (var project in Model)
+                        {
+                            <li>
+                                <a asp-action="ProjectInfoItem" class="ca isLogin"
+                                   asp-all-route-data='new Dictionary<string, string>() { { "id",project.ID.ToString() } }'>
+                                    <span class="title">@project.Title</span>
+                                    @*<span class="date">@project.CreatTime.Value.ToString("yyyy/MM/dd")</span>*@
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="footer">
+                    <div class="pager" style="width: 722px;">
+                        <ul id="dark-pagination" class="pagination"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

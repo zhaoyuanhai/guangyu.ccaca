@@ -1,0 +1,52 @@
+﻿#main-body {
+    background-image: url(/images/联系我们.jpg);
+    background-size: cover;
+    overflow-y: auto;
+}
+
+.box.tm {
+    width: 600px;
+    height: 350px;
+    margin: auto;
+}
+
+    .box.tm.sys {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 200px;
+    }
+
+.contact {
+    list-style: none;
+    padding: 0;
+    color: white;
+}
+
+    .contact li {
+        line-height: 45px;
+    }
+
+.rqcode-container {
+    position: absolute;
+    color: white;
+    margin-top: -62px;
+    top: 50%;
+    width: 100%;
+}
+
+    .rqcode-container > div {
+        margin-left: 140px;
+        position: absolute;
+        top: 12px;
+    }
+
+.rqcode {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+}
+
+.body.middle {
+    position: relative;
+    overflow: hidden;
+}

@@ -1,0 +1,57 @@
+﻿@using Microsoft.Extensions.Primitives;
+@model List<T_Information>
+@{
+    ViewData["Title"] = "最新资讯";
+}
+@section styles{
+    <link href="~/css/pages/newinfo.css" rel="stylesheet" />
+    <link href="~/css/simplePagination.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/js/jquery.simplePagination.js"></script>
+    <script>
+        $('#dark-pagination').pagination({
+            pages: @ViewBag.PageCount,
+            currentPage:@ViewBag.PageIndex,
+            prevText: "@_("上一页")",
+            nextText:"@_("下一页")",
+            cssStyle: 'dark-theme',
+            onPageClick: function (pageNumber, event) {
+                location.href = location.pathname + "?pageIndex=" + pageNumber;
+            }
+        });
+    </script>
+}
+
+<div class="glus">
+    <div class="box tm animated lightSpeedIn">
+        <div class="content">
+            <div class="title">
+                <span>@_("行业动态")</span>
+            </div>
+            <div class="body">
+                <div class="newinfo auto-height">
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <a asp-action="infoitem" asp-all-route-data='new Dictionary<string, string>() { { "id",item.ID.ToString()} }'>
+                                    <div class="cover">
+                                        <img src="@item.Conver" />
+                                    </div>
+                                    <span>@item.Title</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pager">
+                    <ul id="dark-pagination" class="pagination"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

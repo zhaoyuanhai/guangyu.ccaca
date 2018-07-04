@@ -1,0 +1,60 @@
+﻿#main-body {
+    background-image: url(/images/行业动态.jpg);
+    background-size: cover;
+}
+
+.content {
+    overflow: hidden !important;
+    height: 100%;
+}
+
+.glus {
+    height: calc(100% - 100px);
+}
+
+.title {
+    margin-left: 17px;
+}
+
+.form-container {
+    margin-top: auto !important;
+    padding-top: 80px !important;
+}
+
+.newinfo ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.newinfo::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.newinfo ul li {
+    width: 18.6%;
+    height: 200px;
+    margin-left: 18px;
+    margin-bottom: 15px;
+    float: left;
+    background-color: white;
+}
+
+    .newinfo ul li:nth-child(5n+1) {
+        margin-left: 0;
+    }
+
+    .newinfo ul li .cover {
+        height: 150px;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+
+    .newinfo ul li span {
+        margin-left: 10px;
+        margin-right: 10px;
+        display: block;
+        color: black;
+    }

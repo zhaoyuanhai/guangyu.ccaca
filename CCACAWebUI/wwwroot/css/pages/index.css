@@ -1,0 +1,148 @@
+﻿.o-c-top {
+    overflow: hidden;
+}
+
+.m-max {
+    height: 100%;
+}
+
+.f-box img {
+    height: 100%;
+}
+
+.f-box {
+    overflow: hidden;
+}
+
+.c-box {
+    width: 80%;
+    height: 300px;
+    margin: 50px auto auto auto;
+    color: white;
+}
+
+    .c-box h2 {
+        font-size: 25px;
+        color: white;
+    }
+
+.xminfo {
+    box-sizing: border-box;
+    padding: 10px 40px 40px;
+    background-color: #E3E3E3;
+}
+
+    .xminfo h2 {
+        font-size: 23px;
+        color: #1178AF;
+    }
+
+    .xminfo ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .xminfo li {
+        line-height: 25px;
+        margin-bottom: 5px;
+    }
+
+.yw {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .yw li {
+        word-wrap: break-word;
+        margin-top: 10px;
+    }
+
+        .yw li .date {
+            display: block;
+            color: #2EB7DD;
+        }
+
+        .yw li .title {
+            color: #4E4E4E;
+            font-weight: 600;
+        }
+
+        .yw li .item {
+            color: gray;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-size: 10px;
+            line-height: 16px;
+        }
+
+.contact {
+    list-style: none;
+    margin-left: 20px;
+    padding: 0;
+    color: white;
+}
+
+    .contact li {
+        line-height: 35px;
+    }
+
+.c-box .text {
+    text-align: justify;
+}
+
+.block {
+    display: block;
+}
+
+.text-break {
+    text-overflow: clip;
+    word-wrap: break-word;
+    color: gray;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 10px;
+    line-height: 15px;
+}
+
+.vip {
+    color: #ff7777;
+    font-size: 10px;
+}
+
+.aaa ul {
+    /*height: 300px;*/
+    /*overflow-y: auto;*/
+}
+
+.smaill-title {
+    color: white;
+    font-size: 10px;
+    line-height: 10px;
+}
+
+title-color {
+    color: #4E4E4E;
+}
+
+.carousel .carousel-control {
+    line-height: 600px;
+}
+
+.form-container {
+    margin-top: 80px !important;
+}
+
+.limarquee {
+    height: 320px;
+}
+
+.wordspace {
+    letter-spacing: 5px;
+}

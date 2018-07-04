@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        if (!window.top.count) {
+            window.top.count = 1;
+        }
+        window.top.count++;
+        document.write(window.top.count);
+    </script>
+</head>
+<body>
+    <a href="index.html?name=44">two页面</a>
+    <span>{{ name }}</span>
+    <ves-for expre="item in array">
+        <ves-if expre="name=='zhangsan'">
+            <span>{{ name }}</span>
+        </ves-if>
+        <ves-else-if expre="name=='ddd'">
+            <span>{{ name }}</span>
+        </ves-else-if>
+        <ves-else>
+            <span>{{ name }}</span>
+        </ves-else>
+    </ves-for>
+</body>
+</html>

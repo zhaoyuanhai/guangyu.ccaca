@@ -1,0 +1,24 @@
+﻿@model T_Information
+@{
+    ViewData["Title"] = "行业动态详情";
+}
+
+@section styles{
+    <link href="~/css/pages/infoitem.css" rel="stylesheet" />
+}
+
+<div class="glus">
+    <div class="box tm animated lightSpeedIn">
+        <div class="content">
+            <div class="title text-center">
+                <span>@Model.Title</span>
+            </div>
+            <div class="body">
+                <div class="auto-height" style="color:white;">
+                    @Html.String(Model.Content)
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

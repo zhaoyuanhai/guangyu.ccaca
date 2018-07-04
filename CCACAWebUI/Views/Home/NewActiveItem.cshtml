@@ -1,0 +1,23 @@
+﻿@model T_NewActive
+@{
+    ViewData["Title"] = "最新活动详情";
+}
+
+@section styles{
+    <link href="~/css/pages/newactiveitem.css" rel="stylesheet" />
+}
+
+<div class="glus">
+    <div class="box tm animated lightSpeedIn">
+        <div class="content">
+            <div class="title text-center">
+                <span>@Model.Title</span>
+            </div>
+            <div class="body">
+                <div class="auto-height">
+                    @Html.String(Model.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
