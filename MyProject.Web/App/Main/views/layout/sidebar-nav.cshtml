@@ -1,0 +1,201 @@
+﻿<div class="menu" ng-controller="app.views.layout.sidebarNav as vm">
+    <ul class="list">
+        @*<li ui-sref-active="active">
+            <a ui-sref="home">
+                <i class="material-icons">home</i>
+                <span>首页</span>
+            </a>
+        </li>*@
+        <li ui-sref-active="active">
+            <a class="menu-toggle">
+                <i class="material-icons">menu</i>
+                <span>菜单管理</span>
+            </a>
+            <ul class="ml-menu">
+                <li ui-sref-active="active">
+                    <a class="menu-toggle">
+                        <span>首页</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li ui-sref-active="active">
+                            <a ui-sref="leftCarousel">
+                                <span>左侧轮播图</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="centerCarousel">
+                                <span>中部轮播图</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="homeImgText">
+                                <span>图文设置</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="homeImage({type:'img1'})">
+                                <span>首页图一</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="homeImage({type:'img2'})">
+                                <span>首页图二</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="homeImage({type:'img3'})">
+                                <span>首页图三</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li ui-sref-active="active">
+                    <a class="menu-toggle">
+                        <span>CCACA</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li ui-sref-active="active">
+                            <a ui-sref="ccaca({id:1})">
+                                <span>CCACA历史</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="ccaca({id:2})">
+                                <span>我们要做的事</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="ccaca({id:3})">
+                                <span>我们的愿景</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="company">
+                                <span>协作单位</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li ui-sref-active="active">
+                    <a class="menu-toggle">
+                        <span>会员专享</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li ui-sref-active="active">
+                            <a ui-sref="member">
+                                <span>会员特权</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="memberLink">
+                                <span>会员链接</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="picture">
+                                <span>图片设置</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="newInfo">
+                        <span>最新资讯</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="projectInfo">
+                        <span>项目信息</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="contact">
+                        <span>联系我们</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="rqCode">
+                        <span>二维码设置</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="user">
+                        <span>用户管理</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="dict">
+                        <span>语言字典管理</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="newActive">
+                        <span>最新活动</span>
+                    </a>
+                </li>
+                <li ui-sref-action="active">
+                    <a ui-sref="fileMgr">
+                        <span>文件管理</span>
+                    </a>
+                </li>
+                <li ui-sref-action="active">
+                    <a ui-sref="backimg">
+                        <span>背景图管理</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        @*<li ng-repeat="menuItem in vm.menuItems" ng-if="vm.showMenuItem(menuItem)" ui-sref-active="active">
+                <!-- route name -->
+                <a ui-sref="{{menuItem.route}}" ng-if="!menuItem.items && menuItem.route.indexOf('http') != 0">
+                    <i ng-if="menuItem.icon" class="material-icons">{{menuItem.icon}}</i>
+                    <span>{{menuItem.name}}</span>
+                </a>
+                <!-- Static link (starts with 'http') -->
+                <a href="{{menuItem.route}}" target="_blank" ng-if="!menuItem.items  && menuItem.route.indexOf('http') == 0">
+                    <i ng-if="menuItem.icon" class="material-icons">{{menuItem.icon}}</i>
+                    <span>{{menuItem.name}}</span>
+                </a>
+                <!-- Has child menu items (so, this is a parent menu) -->
+                <a href="javascript:void(0);" class="menu-toggle" ng-if="menuItem.items">
+                    <i ng-if="menuItem.icon" class="material-icons">{{menuItem.icon}}</i>
+                    <span>{{menuItem.name}}</span>
+                </a>
+                <ul class="ml-menu" ng-if="menuItem.items">
+                    <li ng-repeat="subMenuItem in menuItem.items" ng-if="vm.showMenuItem(subMenuItem)" ui-sref-active="active">
+                        <!-- route name -->
+                        <a ui-sref="{{subMenuItem.route}}" class="toggled" ng-if="!subMenuItem.items && subMenuItem.route.indexOf('http') != 0">
+                            <i ng-if="subMenuItem.icon" class="material-icons">{{subMenuItem.icon}}</i>
+                            <span>{{subMenuItem.name}}</span>
+                        </a>
+                        <!-- Static link (starts with 'http') -->
+                        <a href="{{subMenuItem.route}}" class="toggled" target="_blank" ng-if="!subMenuItem.items && subMenuItem.route.indexOf('http') == 0">
+                            <i ng-if="subMenuItem.icon" class="material-icons">{{subMenuItem.icon}}</i>
+                            <span>{{subMenuItem.name}}</span>
+                        </a>
+                        <!-- Has child menu items (so, this is a parent menu) -->
+                        <a href="javascript:void(0);" class="menu-toggle" ng-if="subMenuItem.items">
+                            <i ng-if="subMenuItem.icon" class="material-icons">{{subMenuItem.icon}}</i>
+                            <span>{{subMenuItem.name}}</span>
+                        </a>
+                        <ul class="ml-menu" ng-if="subMenuItem.items">
+                            <li ng-repeat="subSubMenuItem in subMenuItem.items" ng-if="vm.showMenuItem(subSubMenuItem)" ui-sref-active="active">
+                                <!-- route name -->
+                                <a ui-sref="{{subSubMenuItem.route}}" ng-if="subSubMenuItem.route.indexOf('http') != 0">
+                                    <i ng-if="subSubMenuItem.icon" class="material-icons">{{subSubMenuItem.icon}}</i>
+                                    <span>{{subSubMenuItem.name}}</span>
+                                </a>
+                                <!-- Static link (starts with 'http') -->
+                                <a href="{{subSubMenuItem.route}}" target="_blank" ng-if="subSubMenuItem.route.indexOf('http') == 0">
+                                    <i ng-if="subSubMenuItem.icon" class="material-icons">{{subSubMenuItem.icon}}</i>
+                                    <span>{{subSubMenuItem.name}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>*@
+    </ul>
+</div>

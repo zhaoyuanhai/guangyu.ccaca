@@ -1,0 +1,70 @@
+﻿<div class="row clearfix" ng-controller="app.views.ccaca.homeImage.index as vm">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card main-content">
+            <div class="header">
+                <h2>
+                    @L("首页图片管理")
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);" class="waves-effect waves-block()" ng-click="vm.refresh();"><i class="material-icons">refresh</i> @L("Refresh")</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <!-- ******************************************************** -->
+                <div class="row clearfix" style="margin-top:10px;">
+                    <div class="col-sm-6">
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group form-float">
+                                    <div class="form-line focused">
+                                        <input type="text" class="form-control" ng-model="vm.model.name" />
+                                        <label class="form-label">@L("名称")</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group form-float">
+                                    <div class="form-line focused">
+                                        <input id="filepath" type="file" class="form-control">
+                                        <label class="form-label">@L("图片文件")</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group form-float">
+                                    <div class="form-line focused">
+                                        <select class="form-control"
+                                                ng-model="vm.model.lang"
+                                                ng-change="vm.setLanguage()"
+                                                ng-options="item.id as item.name for item in vm.langs"></select>
+                                        <label class="form-label">@L("语言")</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <img style="max-width:100%" ng-src="{{vm.model.path}}" />
+                    </div>
+                </div>
+                <p></p>
+                <button type="submit" class="btn btn-primary blue"
+                        ng-click="vm.save()">
+                    @L("Save")
+                </button>
+                <!-- ******************************************************** -->
+            </div>
+        </div>
+    </div>
+</div>

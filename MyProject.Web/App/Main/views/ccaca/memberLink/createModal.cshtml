@@ -1,0 +1,36 @@
+﻿<div>
+    <form name="tenantCreateForm" novalidate>
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="vm.cancel()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">
+                <span>@L("添加会员链接")</span>
+            </h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input class="form-control" ng-model="vm.model.name" type="text">
+                    <label class="form-label">@L("名称")</label>
+                </div>
+            </div>
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input class="form-control" ng-model="vm.model.link" type="text">
+                    <label class="form-label">@L("链接地址")</label>
+                </div>
+            </div>
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input class="form-control" ng-model="vm.model.icon" type="file" id="file_icon">
+                    <label class="form-label">@L("图标")</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="vm.cancel()">@L("Cancel")</button>
+            <button type="submit" class="btn btn-primary blue" ng-click="vm.save()" ng-disabled="tenantCreateForm.$invalid">@L("Save")</button>
+        </div>
+    </form>
+</div>

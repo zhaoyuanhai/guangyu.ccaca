@@ -1,0 +1,69 @@
+﻿<div class="row clearfix" ng-controller="app.views.ccaca.contact.index as vm">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card main-content">
+            <div class="header">
+                <h2>
+                    @L("联系我们")
+                </h2>
+                <i class="fa fa-spin fa-spinner" ng-if="vm.isTableLoading"></i>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);" class="waves-effect waves-block()" ng-click="vm.refresh();"><i class="material-icons">refresh</i> @L("Refresh")</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <!-- ******************************************************** -->
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>@L("名称")</th>
+                            <th>@L("值")</th>
+                            <th>@L("语言列表")</th>
+                            <th>@L("Actions")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.models.model">
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.content }}</td>
+                            <td>
+                                <a class="lan"
+                                   ng-click="vm.setLanguage(item,lang)"
+                                   ng-repeat="lang in vm.models.currentLanguages[item.id]">
+                                    {{lang.lang}}
+                                </a>
+                            </td>
+                            <td class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">menu</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="javascript:void(0);" class="waves-effect waves-block" ng-click="vm.openModifyModal(item)">
+                                            <i class="material-icons">create</i>@L("Edit")
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="waves-effect waves-block" ng-click="vm.delete(item)">
+                                            <i class="material-icons">delete_sweep</i>@L("Delete")
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- ******************************************************** -->
+                <button type="button" data-toggle="modal" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" ng-click="vm.openCreationModal()">
+                    <i class="material-icons">add</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
