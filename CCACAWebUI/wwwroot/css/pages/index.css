@@ -116,11 +116,6 @@
     font-size: 10px;
 }
 
-.aaa ul {
-    /*height: 300px;*/
-    /*overflow-y: auto;*/
-}
-
 .smaill-title {
     color: white;
     font-size: 10px;
@@ -140,9 +135,14 @@ title-color {
 }
 
 .limarquee {
-    height: 320px;
+    height: calc(100% - 68px);
 }
 
 .wordspace {
     letter-spacing: 5px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
 }

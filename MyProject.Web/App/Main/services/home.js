@@ -23,10 +23,12 @@
                         'superscript', '|',
                         'forecolor', 'emoticons', 'fullscreen',
                         'textcolor', 'bgcolor', 'bold',
-                        'italic', 'underline', 'strikethrough', 'removeformat'],
+                        'italic', 'underline', 'strikethrough', 'removeformat', '|', 'image'],
                     width: "550px",
                     minWidth: "200px",
-                    maxWidth: "550px"
+                    maxWidth: "550px",
+                    uploadJson: '/Service/UpLoadFile',
+                    allowFileManager: true
                 };
 
                 $.extend(options, _ops);

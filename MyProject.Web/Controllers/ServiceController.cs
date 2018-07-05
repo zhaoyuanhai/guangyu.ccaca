@@ -10,6 +10,10 @@ using System.Collections.Generic;
 using MyProject.Web.Models;
 using System.Data.Entity;
 using System.Reflection;
+using System.Collections;
+using System.Globalization;
+using Abp.Web.Security.AntiForgery;
+using Abp.Web.Models;
 
 namespace MyProject.Web.Controllers
 {
@@ -556,6 +560,7 @@ namespace MyProject.Web.Controllers
             return JsonModelList(datas);
         }
 
+        [ValidateInput(false)]
         public ActionResult GetNewActive(int id)
         {
             var model = dbContent.NewActive.FirstOrDefault(n => n.ID == id);
@@ -570,6 +575,7 @@ namespace MyProject.Web.Controllers
             return Ok();
         }
 
+        [ValidateInput(false)]
         public ActionResult ModifyNewActive(T_NewActive model)
         {
             dbContent.Entry(model).State = EntityState.Modified;
@@ -631,5 +637,63 @@ namespace MyProject.Web.Controllers
             return Ok();
         }
         #endregion
+
+        /// <summary>
+        /// 上传图片接口
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [DontWrapResult]
+        [DisableAbpAntiForgeryTokenValidation]
+        public ActionResult UpLoadFile()
+        {
+            string uploadFilePath = "/upimages";
+
+            //定义消息
+            Hashtable hash = new Hashtable();
+            hash["error"] = 1;
+            hash["url"] = "";
+            if (Request.Files.Count != 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                //最大文件大小
+                int maxSize = 10000000;
+                //文件名
+                String fileName = file.FileName;
+                //文件格式
+                String fileExt = Path.GetExtension(fileName).ToLower();
+                //定义允许上传的文件扩展名
+                string[] extArr = new[] { ".gif", ".jpg", ".jpeg", ".png", ".bmp" };
+                if (file.InputStream == null || file.InputStream.Length > maxSize)
+                {
+                    hash["error"] = 1;
+                    hash["message"] = "上传文件大小超过限制！";
+                }
+                else if (String.IsNullOrEmpty(fileExt) || !extArr.Contains(fileExt))
+                {
+                    hash["error"] = 1;
+                    hash["message"] = "上传文件扩展名是不允许的扩展名！";
+                }
+                else
+                {
+                    String newFileName = DateTime.Now.ToString("yyyyMMddHHmmss_ffff", DateTimeFormatInfo.InvariantInfo) + fileExt;
+                    string path = Server.MapPath(uploadFilePath);
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    String fileUrl = Path.Combine(path, newFileName);
+                    file.SaveAs(fileUrl);
+                    hash["error"] = 0;
+                    hash["url"] = $"{uploadFilePath}/{newFileName}";
+                }
+            }
+            else
+            {
+                hash["error"] = 1;
+                hash["message"] = "请选择文件！";
+            }
+            return Json(hash, "text/html;charset=UTF-8");
+        }
     }
 }
