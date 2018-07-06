@@ -570,7 +570,6 @@ namespace MyProject.Web.Controllers
         public ActionResult CreateNewActive(T_NewActive model)
         {
             dbContent.Entry(model).State = EntityState.Added;
-            model.CreateTime = DateTime.Now;
             dbContent.SaveChanges();
             return Ok();
         }

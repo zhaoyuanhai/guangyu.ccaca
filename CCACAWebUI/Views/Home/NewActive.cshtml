@@ -43,7 +43,7 @@
                                     </h2>
                                 </a>
                                 <div class="info">
-                                    @item.Content
+                                    @Html.String(Html.InnerText(item.Content))
                                 </div>
                             </div>
                         </li>

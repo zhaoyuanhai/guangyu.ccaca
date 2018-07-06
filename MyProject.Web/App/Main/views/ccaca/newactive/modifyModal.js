@@ -30,7 +30,8 @@
                     homeService.modifyNewActive({
                         id: vm.model.id,
                         title: vm.model.title,
-                        content: vm.model.content
+                        content: vm.model.content,
+                        createTime: vm.model.createTime
                     }).then(function (res) {
                         if (res.result.state) {
                             abp.notify.info(App.localize('SavedSuccessfully'));
