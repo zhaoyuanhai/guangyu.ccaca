@@ -19,8 +19,8 @@
 
 <div id="one-page" class="clear">
     <div class="o-left flt">
-        <div id="myCarousel" 
-             data-interval="2000" 
+        <div id="myCarousel"
+             data-interval="2000"
              data-ride="carousel" carousel='Model.CarouselFigure.Where(x=>x.Type=="big")'></div>
     </div>
     <div class="o-center flt">
@@ -166,10 +166,10 @@
 </div>
 <div class="right-tools">
     <div class="phone">
-        <span>@(Model.Contact.FirstOrDefault(x=>x.ID == Model.PhoneId)?.Content)</span>
+        <span>@(Model.Contact.FirstOrDefault(x => x.ID == Model.PhoneId)?.Content)</span>
     </div>
     <div class="qq">
-        <span>@(Model.Contact.FirstOrDefault(x=>x.ID == Model.QQId)?.Content)</span>
+        <span>@(Model.Contact.FirstOrDefault(x => x.ID == Model.QQId)?.Content)</span>
     </div>
     <div class="rqCode">
         <img src="@Model.CarouselFigure.FirstOrDefault(x=>x.Type == "rqcode")?.Path" />

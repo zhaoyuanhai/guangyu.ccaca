@@ -24,15 +24,15 @@
         z-index: 2;
         padding: 0 70px;
         box-sizing: border-box;
-        display: table;
+        display: block;
     }
 
         .tm > .content > div {
-            display: table-row;
+            display: block;
         }
 
         .tm > .content > .title {
-            height: 80px;
+            height: 60px;
         }
 
             .tm > .content > .title > * {
@@ -43,6 +43,7 @@
             }
 
         .tm > .content > .body {
+            height: calc(100% - 110px);
         }
 
         .tm > .content > .footer {
