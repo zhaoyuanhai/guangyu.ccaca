@@ -88,7 +88,9 @@
                     <span class="item">
                         @HtmlCommon.TextNoHTML(info.Content)
                     </span>
-                    <span class="date">@info.CreateTime.Value.ToString("yyyy-MM-dd")</span>
+                    <span class="date">
+                        @(info.CreateTime.HasValue ? info.CreateTime.Value.ToString("yyyy-MM-dd") : "")
+                    </span>
                 </li>
             }
         </ul>
