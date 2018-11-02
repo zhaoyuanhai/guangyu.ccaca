@@ -1,6 +1,6 @@
 ﻿(function () {
     angular.module("app").controller("app.views.ccaca.newActive.modifyModal",
-        function ($scope, $uibModalInstance, homeService, id, lang) {
+        function ($scope, $uibModalInstance, homeService, id, lang, $filter) {
             var vm = this;
             vm.langs = [
                 { id: 1, name: "中文" },
@@ -11,6 +11,7 @@
             function getModel() {
                 homeService.getNewActive(id, lang).then(function (res) {
                     $scope.$apply(function () {
+                        res.result.createTime = new Date(res.result.createTime);
                         vm.model = res.result;
                         vm.model.lang = lang;
                         $scope.editor = homeService.createEditor();
@@ -31,7 +32,7 @@
                         id: vm.model.id,
                         title: vm.model.title,
                         content: vm.model.content,
-                        createTime: vm.model.createTime
+                        createTime: $filter("date")(vm.model.createTime, "yyyy-MM-dd")
                     }).then(function (res) {
                         if (res.result.state) {
                             abp.notify.info(App.localize('SavedSuccessfully'));

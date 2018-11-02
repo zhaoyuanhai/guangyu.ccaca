@@ -1,13 +1,18 @@
 ﻿$(function () {
-    var pageIndex = 1;
+    var pageIndex = 0;
+    var isLoad = false;
 
     $("#setyw").click(function () {
+        if (isLoad) {
+            return;
+        }
+        isLoad = true;
         $.getJSON("/GetInformation", { pageIndex: ++pageIndex }, function (result) {
             if (result.isLastPage) {
                 pageIndex = 0;
             }
 
-            if (result.pageCount == 1) {
+            if (result.pageCount === 1) {
                 return;
             }
 
@@ -27,6 +32,7 @@
 
                 container.append(li);
             });
+            isLoad = false;
         });
     });
 

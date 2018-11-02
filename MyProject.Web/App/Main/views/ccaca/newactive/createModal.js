@@ -2,11 +2,13 @@
     angular.module("app").controller("app.views.ccaca.newActive.createModal",
         function ($scope, $uibModalInstance, homeService, $timeout) {
             var vm = this;
-            vm.model = {};
+            vm.model = {
+                createTime: new Date()
+            };
 
             vm.cancel = function () {
                 $uibModalInstance.dismiss({});
-            }
+            };
 
             $timeout(function () {
                 $scope.editor = homeService.createEditor();
@@ -26,7 +28,7 @@
                         $uibModalInstance.close();
                         abp.ui.clearBusy();
                     }
-                })
-            }
+                });
+            };
         });
 })();

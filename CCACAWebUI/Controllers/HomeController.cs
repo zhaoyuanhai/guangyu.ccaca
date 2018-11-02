@@ -103,7 +103,9 @@ namespace CCACAWebUI.Controllers
         public IActionResult GetInformation(int pageIndex = 1, int pageSize = 6)
         {
             var count = DbContext.Informations.Count();
-            var datas = DbContext.Informations.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            var datas = DbContext.Informations.OrderByDescending(x => x.CreateTime)
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize).ToList();
             var pageCount = (int)Math.Ceiling(count * 1.0 / pageSize);
             Translate(datas, Language);
             return Json(new

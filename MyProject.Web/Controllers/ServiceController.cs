@@ -368,7 +368,7 @@ namespace MyProject.Web.Controllers
         [ValidateInput(false)]
         public ActionResult CreateNewInfo(T_Information model)
         {
-            model.CreateTime = DateTime.Now;
+            model.CreateTime = model.CreateTime ?? DateTime.Now;
             dbContent.Entry(model).State = EntityState.Added;
             var file = Request.Files["file_conver"];
             model.Conver = SaveFile(file);
@@ -380,7 +380,6 @@ namespace MyProject.Web.Controllers
         public ActionResult ModifyNewInfo(T_Information model)
         {
             dbContent.Entry(model).State = EntityState.Modified;
-            dbContent.Entry(model).Property(x => x.CreateTime).IsModified = false;
             var file = Request.Files["file_conver"];
             if (file != null && file.ContentLength > 0)
                 model.Conver = SaveFile(file);
@@ -578,7 +577,6 @@ namespace MyProject.Web.Controllers
         public ActionResult ModifyNewActive(T_NewActive model)
         {
             dbContent.Entry(model).State = EntityState.Modified;
-            dbContent.Entry(model).Property("CreateTime").IsModified = false;
             dbContent.SaveChanges();
             return Ok();
         }

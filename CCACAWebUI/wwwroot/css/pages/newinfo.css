@@ -52,9 +52,17 @@
         padding: 10px;
     }
 
+        .newinfo ul li .cover img {
+            border: 0;
+        }
+
     .newinfo ul li span {
-        margin-left: 10px;
-        margin-right: 10px;
-        display: block;
+        display: inline-block;
         color: black;
+        text-indent: 10px;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-indent: 10px;
     }

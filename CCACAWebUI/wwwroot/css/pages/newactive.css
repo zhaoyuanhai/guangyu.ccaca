@@ -37,5 +37,6 @@
 
 .info {
     height: 35px;
+    line-height: 19px;
     overflow-y: hidden;
 }

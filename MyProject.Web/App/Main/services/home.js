@@ -368,6 +368,7 @@
                 formData.append("file_conver", model.file_conver);
                 formData.append("content", model.content);
                 formData.append("conver", model.conver);
+                formData.append("createTime", model.createTime);
 
                 return $.ajax({
                     url: "/Service/ModifyNewInfo",
@@ -375,7 +376,7 @@
                     processData: false,
                     contentType: false,
                     type: "POST"
-                })
+                });
             },
 
             deleteNewInfo: function (id) {

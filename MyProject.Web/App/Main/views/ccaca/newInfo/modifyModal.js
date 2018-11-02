@@ -1,6 +1,6 @@
 ﻿(function () {
     angular.module("app").controller("app.views.ccaca.newInfo.modifyModal",
-        function ($scope, $uibModalInstance, homeService, id, lang) {
+        function ($scope, $uibModalInstance, homeService, id, lang, $filter) {
             var vm = this;
             vm.langs = [
                 { id: 1, name: "中文" },
@@ -11,6 +11,7 @@
             function getModel() {
                 homeService.getNewInfo(id, lang).then(function (res) {
                     $scope.$apply(function () {
+                        res.result.createTime = new Date(res.result.createTime);
                         vm.model = res.result;
                         vm.model.lang = lang;
                         $scope.editor = homeService.createEditor();
@@ -21,7 +22,7 @@
 
             vm.cancel = function () {
                 $uibModalInstance.dismiss({});
-            }
+            };
 
             vm.save = function () {
                 vm.model.content = $scope.editor.html();
@@ -32,7 +33,8 @@
                         title: vm.model.title,
                         content: vm.model.content,
                         conver: vm.model.conver,
-                        file_conver: angular.element("#file_conver")[0].files[0]
+                        file_conver: angular.element("#file_conver")[0].files[0],
+                        createTime: $filter("date")(vm.model.createTime, "yyyy-MM-dd")
                     }).then(function (res) {
                         if (res.result.state) {
                             abp.notify.info(App.localize('SavedSuccessfully'));
@@ -57,7 +59,7 @@
                         abp.ui.clearBusy();
                     });
                 }
-            }
+            };
 
             getModel();
         });
