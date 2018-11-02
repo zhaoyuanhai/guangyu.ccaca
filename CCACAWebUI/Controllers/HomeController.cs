@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -23,9 +24,7 @@ namespace CCACAWebUI.Controllers
             var carousel = DbContext.Carousels.ToList();
             var contact = DbContext.Configures.Where(x => x.Type == (int)ConfigTypeEnum.Contact).ToList();
             var projectInfo = DbContext.ProjectInfos.ToList();
-            var information = DbContext.Informations
-                .OrderByDescending(x => x.CreateTime)
-                .Take(6).ToList();
+
             var newActive = DbContext.NewActive.Take(6).ToList();
 
             int? qqid = contact.FirstOrDefault(x => x.Title == "QQ")?.ID;
@@ -34,8 +33,8 @@ namespace CCACAWebUI.Controllers
             Translate(homeConfigList, Language);
             Translate(carousel, Language);
             Translate(contact, Language);
-            Translate(information, Language);
 
+            var information = PageingInfomation(1, 6, out int count);
             return View(new IndexModel()
             {
                 ConfigList = homeConfigList,
@@ -102,18 +101,27 @@ namespace CCACAWebUI.Controllers
 
         public IActionResult GetInformation(int pageIndex = 1, int pageSize = 6)
         {
-            var count = DbContext.Informations.Count();
-            var datas = DbContext.Informations.OrderByDescending(x => x.CreateTime)
-                .Skip((pageIndex - 1) * pageSize)
-                .Take(pageSize).ToList();
+            var datas = PageingInfomation(pageIndex, pageSize, out int count);
             var pageCount = (int)Math.Ceiling(count * 1.0 / pageSize);
-            Translate(datas, Language);
+
             return Json(new
             {
                 datas,
                 isLastPage = pageCount == pageIndex,
                 pageCount
             });
+        }
+
+        private List<T_Information> PageingInfomation(int pageIndex, int pageSize, out int count)
+        {
+            var _count = DbContext.Informations.Count();
+            var datas = DbContext.Informations.OrderByDescending(x => x.CreateTime)
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize).ToList();
+            var pageCount = (int)Math.Ceiling(_count * 1.0 / pageSize);
+            Translate(datas, Language);
+            count = _count;
+            return datas;
         }
 
         public IActionResult ResourceDown(int pageIndex = 1, int pageCount = 8)

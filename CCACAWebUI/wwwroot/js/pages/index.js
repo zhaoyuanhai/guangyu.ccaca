@@ -1,5 +1,5 @@
 ﻿$(function () {
-    var pageIndex = 0;
+    var pageIndex = 1;
     var isLoad = false;
 
     $("#setyw").click(function () {
