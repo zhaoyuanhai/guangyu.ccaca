@@ -231,9 +231,9 @@
         padding: 250px 0px 0px 0px;
     }
 
-    body {
+    /*body {
         padding: 100px 0px 0px 0px;
-    }
+    }*/
 
     .login h2 {
         font-size: 28px;
@@ -270,9 +270,9 @@
         padding: 110px 0px 0px 0px;
     }
 
-    body {
+    /*body {
         padding: 110px 0px 0px 0px;
-    }
+    }*/
 }
 
 @media(max-width:480px) {
@@ -346,9 +346,9 @@
                 font-size: 17px;
             }
 
-    body {
+    /*body {
         padding: 50px 0px 0px 0px;
-    }
+    }*/
 
     .copyright p {
         font-size: 13px;

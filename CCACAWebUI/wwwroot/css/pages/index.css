@@ -69,6 +69,11 @@
         .yw li .title {
             color: #4E4E4E;
             font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: inline-block;
         }
 
         .yw li .item {
