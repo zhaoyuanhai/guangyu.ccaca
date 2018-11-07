@@ -511,7 +511,8 @@ namespace MyProject.Web.Controllers
                     {
                         ID = item.LanguageId,
                         Lang = ((LanguageModel)item.LanguageId).ToString(),
-                        Value = item.Value
+                        Value = item.Value,
+                        DictId = item.ID
                     }));
             }
 

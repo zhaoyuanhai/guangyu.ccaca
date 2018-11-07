@@ -35,9 +35,7 @@
                     controller: 'app.views.ccaca.dict.modifyModal as vm',
                     backdrop: 'static',
                     resolve: {
-                        id: function () {
-                            return item.id
-                        }
+                        id: item.dictId
                     }
                 });
 
@@ -48,7 +46,7 @@
                 modalInstance.result.then(function () {
                     getList();
                 });
-            }
+            };
 
             vm.delete = function (item) {
                 abp._message.confirm(
@@ -62,11 +60,11 @@
                                 });
                         }
                     });
-            }
+            };
 
             vm.setLanguage = function (model) {
                 vm.openModifyModal(model);
-            }
+            };
 
             getList();
         });

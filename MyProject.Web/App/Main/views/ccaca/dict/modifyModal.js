@@ -5,7 +5,7 @@
             vm.langs = [
                 { id: 2, name: "English" },
                 { id: 3, name: "ESPANOL" },
-                { id: 4, name: "PORTUGUES" }]
+                { id: 4, name: "PORTUGUES" }];
 
             function getModel() {
                 homeService.getDict(id).then(function (res) {
@@ -23,6 +23,7 @@
                 abp.ui.setBusy();
 
                 homeService.modifyDict({
+                    id: vm.model.id,
                     word: vm.model.word,
                     value: vm.model.value,
                     languageId: vm.model.languageId
@@ -31,8 +32,7 @@
                     $uibModalInstance.close();
                     abp.ui.clearBusy();
                 });
-                
-            }
+            };
 
             getModel();
         });

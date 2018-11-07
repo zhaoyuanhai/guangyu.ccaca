@@ -9,5 +9,7 @@ namespace MyProject.Web.Models
     public class LanguageExt : T_Language
     {
         public string Value { get; set; }
+
+        public int DictId { get; set; }
     }
 }
