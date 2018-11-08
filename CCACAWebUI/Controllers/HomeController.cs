@@ -183,6 +183,8 @@ namespace CCACAWebUI.Controllers
             var contactConfig = DbContext.Configures.Where(x => x.Type == (int)ConfigTypeEnum.Contact).ToList();
             var rqCode = DbContext.Carousels.FirstOrDefault(x => x.Type == "rqcode");
 
+            Translate(contactConfig, Language);
+
             return View(new ContactModel()
             {
                 ConfigList = contactConfig,

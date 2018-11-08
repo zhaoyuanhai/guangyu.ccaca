@@ -13,18 +13,17 @@ namespace CCACAWebUI.Controllers
     {
         protected DbEntityContext DbContext;
 
-        protected LanguageEmun Language { get; set; }
-
-        public override void OnActionExecuting(ActionExecutingContext context)
+        protected LanguageEmun Language
         {
-            string languageId = Request.Cookies["LanguageId"];
-            if (!string.IsNullOrEmpty(Request.Query["LanguageId"].ToString()))
-                languageId = Request.Query["LanguageId"];
-            if (Request.HasFormContentType && Request.Form["LanguageId"].ToString() != null)
-                languageId = Request.Form["LanguageId"];
-
-            Language = int.TryParse(languageId, out int iLanguage) ?
-                (LanguageEmun)iLanguage : LanguageEmun.CHINESE;
+            get
+            {
+                var languageId = this.RouteData.Values["LanguageId"];
+                if (languageId != null)
+                {
+                    return (LanguageEmun)int.Parse(languageId.ToString());
+                }
+                return LanguageEmun.CHINESE;
+            }
         }
 
         public BaseController(DbEntityContext dbContext)
@@ -47,16 +46,18 @@ namespace CCACAWebUI.Controllers
             string tableName = type.Name;
             PropertyInfo[] fileds = type.GetProperties();
             string[] strFiles = fileds.Select(f => f.Name).ToArray();
-            int id = Convert.ToInt32(type.GetProperty("ID").GetValue(t, null));
+            int id = Convert.ToInt32(type.GetProperty("id", BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase).GetValue(t, null));
 
+            var refsDatas = DbContext.Refs.ToList();
             foreach (string fileName in strFiles)
             {
-                var entity = DbContext.Refs.Where(m => m.TableName == tableName &&
+                var prop = type.GetProperty(fileName);
+                var entity = refsDatas.Where(m => m.TableName == tableName &&
                     m.FiledName == fileName &&
                     m.RowID == id &&
                     m.LanguageID == (int)language).FirstOrDefault();
                 if (entity != null)
-                    type.GetProperty(fileName).SetValue(t, entity.RowValue);
+                    type.GetProperty(fileName).SetValue(t, Convert.ChangeType(entity.RowValue, prop.PropertyType));
             }
             return t;
         }

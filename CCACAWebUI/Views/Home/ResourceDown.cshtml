@@ -37,8 +37,8 @@
                         <li>
                             <span class="name">@item.Name</span>
                             <span class="tools">
-                                <a href="~/pdfviewer/web/viewer.html?file=@item.Path" target="_blank">预览</a>
-                                <a href="@item.Path" target="_blank" download="@(item.Name + IoPath.GetExtension(item.Path))">下载</a>
+                                <a href="~/pdfviewer/web/viewer.html?file=@item.Path" target="_blank">@_("预览")</a>
+                                <a href="@item.Path" target="_blank" download="@(item.Name + IoPath.GetExtension(item.Path))">@_("下载")</a>
                             </span>
                         </li>
                     }
