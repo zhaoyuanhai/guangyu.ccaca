@@ -354,7 +354,7 @@ namespace MyProject.Web.Controllers
         #region newInfoList
         public ActionResult GetNewInfoList()
         {
-            var datas = dbContent.Informations.ToList();
+            var datas = dbContent.Informations.OrderByDescending(x => x.CreateTime).ToList();
             return JsonModelList(datas);
         }
 

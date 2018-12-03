@@ -25,7 +25,7 @@ namespace CCACAWebUI.Controllers
             var contact = DbContext.Configures.Where(x => x.Type == (int)ConfigTypeEnum.Contact).ToList();
             var projectInfo = DbContext.ProjectInfos.ToList();
 
-            var newActive = DbContext.NewActive.Take(6).ToList();
+            var newActive = DbContext.NewActive.ToList();
 
             int? qqid = contact.FirstOrDefault(x => x.Title == "QQ")?.ID;
             int? phoneid = contact.FirstOrDefault(x => x.Title == "电话")?.ID;
@@ -195,6 +195,7 @@ namespace CCACAWebUI.Controllers
         public IActionResult InfoItem(int id)
         {
             var info = DbContext.Informations.FirstOrDefault(i => i.ID == id);
+            info = Translate(info, Language);
             return View(info);
         }
 

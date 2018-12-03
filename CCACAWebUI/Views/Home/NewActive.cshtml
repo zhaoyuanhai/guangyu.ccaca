@@ -1,6 +1,7 @@
 ﻿@model List<T_NewActive>
 @{
     ViewData["Title"] = "最新活动";
+    var dict = ViewBag.languageDict as Dictionary<string, string>;
 }
 
 @section styles{
@@ -41,9 +42,15 @@
                     {
                         <li>
                             <div>
-                                <a href="@Url.Action("NewActiveItem",new { id= item.ID })">
+                                @*<a href="@Url.Action("NewActiveItem",new { id= item.ID })">
+                                        <h2>
+                                            @item.CreateTime.ToString("yyyy-MM-dd")，
+                                            @item.Title
+                                        </h2>
+                                    </a>*@
+                                <a asp-action="NewActiveItem" asp-all-route-data="dict.RouteTo(new { Id = item.ID})">
                                     <h2>
-                                        @item.CreateTime.ToString("yyyy年MM月dd日")，
+                                        @item.CreateTime.ToString("yyyy-MM-dd")，
                                         @item.Title
                                     </h2>
                                 </a>

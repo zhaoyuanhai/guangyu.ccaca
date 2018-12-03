@@ -4,6 +4,7 @@
 @model IndexModel
 @{
     ViewData["Title"] = "首页";
+    var dict = ViewBag.languageDict as Dictionary<string, string>;
 }
 
 @section styles{
@@ -34,9 +35,9 @@
                             foreach (var item in Model.NewActive)
                             {
                                 <li style="margin-bottom: 20px;">
-                                    <span class="block smaill-title">@item.CreateTime.ToString("yyyy年MM月dd日")</span>
+                                    <span class="block smaill-title">@item.CreateTime.ToString("yyyy-MM-dd")</span>
                                     <a asp-action="NewActiveItem"
-                                       asp-all-route-data='new Dictionary<string, string>() { { "id",item.ID.ToString() } }'
+                                       asp-all-route-data="dict.RouteTo(new { Id = item.ID })"
                                        style="color:white">@item.Title</a>
                                 </li>
                             }
@@ -56,10 +57,10 @@
                                 <li>
                                     <a class="title-color isLogin"
                                        asp-action="ProjectInfoItem"
-                                       asp-all-route-data='new Dictionary<string, string>() { { "id",item.ID.ToString()} }'
+                                       asp-all-route-data="dict.RouteTo(new { Id = item.ID })"
                                        style="color:#4E4E4E;font-weight: 600;">@item.Title</a>
                                     <span class="text-break">@Html.InnerText(item.Content)</span>
-                                    <span class="vip">会员权益</span>
+                                    <span class="vip">@_("会员权益")</span>
                                 </li>
                             }
                         }
@@ -82,7 +83,7 @@
             @foreach (var info in Model.Infomation)
             {
                 <li>
-                    <a asp-action="infoitem" asp-all-route-data='new Dictionary<string, string>() { { "id",info.ID.ToString() } }' class="title">
+                    <a asp-action="infoitem" asp-all-route-data="dict.RouteTo(new { Id = info.ID })" class="title">
                         @info.Title
                     </a>
                     <span class="item">
@@ -107,7 +108,7 @@
                 <span class="logo-text">CCACA</span>
                 <div class="c-box">
                     <h2>@Model.ConfigList[0].Title</h2>
-                    <div class="text wordspace" style="line-height: 21px;">
+                    <div class="text" style="line-height: 21px;">
                         @Html.String(Model.ConfigList[0].Content)
                     </div>
                 </div>
@@ -137,7 +138,7 @@
             <div class="f-box c-light-blue">
                 <div class="c-box">
                     <h2>@Model.ConfigList[2].Title</h2>
-                    <div class="wordspace" style="line-height: 21px;">
+                    <div style="line-height: 21px;">
                         @Html.String(Model.ConfigList[2].Content)
                     </div>
                 </div>

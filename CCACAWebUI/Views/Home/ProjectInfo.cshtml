@@ -1,6 +1,7 @@
 ﻿@model List<T_ProjectInfo>
 @{
     ViewData["Title"] = "项目信息";
+    var dict = ViewBag.languageDict as Dictionary<string, string>;
 }
 @section styles{
     <link href="~/css/simplePagination.css" rel="stylesheet" />
@@ -46,7 +47,7 @@
                         {
                             <li>
                                 <a asp-action="ProjectInfoItem" class="ca isLogin"
-                                   asp-all-route-data='new Dictionary<string, string>() { { "id",project.ID.ToString() } }'>
+                                   asp-all-route-data="dict.RouteTo(new { Id = project.ID})">
                                     <span class="title">@project.Title</span>
                                     @*<span class="date">@project.CreatTime.Value.ToString("yyyy/MM/dd")</span>*@
                                 </a>

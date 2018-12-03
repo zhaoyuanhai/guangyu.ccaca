@@ -29,7 +29,7 @@ bool Compar(string key, params string[] values)
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@_(ViewBag.Title) - @_("拉丁美洲税务合作中心")</title>
+    <title>@_("中国-拉丁美洲水务合作中心")</title>
     @RenderSection("styles", required: false)
 
     <link rel="stylesheet" href="~/css/carousel.css" />
@@ -66,7 +66,7 @@ bool Compar(string key, params string[] values)
                         }
                         else
                         {
-                            <a  asp-action="Logout" asp-controller="Help">@GetUserProp("name") (@_("退出"))</a> 
+                            <a asp-action="Logout" asp-controller="Help">@GetUserProp("name") (@_("退出"))</a>
                         }
                     </li>
                 </ul>
@@ -129,10 +129,17 @@ bool Compar(string key, params string[] values)
                         </p>
                         <p class="submit">
                             <span class="pull-left">
-                                <a class="pull-left b-blue" asp-action="forgetpassword" asp-controller="help">@_("忘记密码")</a>
-                                <a class="pull-left b-blue" style="margin-left: 25px;" asp-action="regestaccount" asp-controller="help">@_("账号注册")</a>
+                                <a class="pull-left b-blue"
+                                   asp-action="forgetpassword"
+                                   asp-controller="help"
+                                   asp-all-route-data="languageDict">@_("忘记密码")</a>
+
+                                <a class="pull-left b-blue" style="margin-left: 25px;"
+                                   asp-action="regestaccount"
+                                   asp-controller="help"
+                                   asp-all-route-data="languageDict">@_("账号注册")</a>
                             </span>
-                            <input type="button" style="margin-top: -6px;" name="commit" value="@_("登录")" />
+                            <input type="button" style="margin-top: -6px;" name="commit" value="@_("登陆")" />
                         </p>
                     </form>
                 </div>

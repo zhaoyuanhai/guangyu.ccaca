@@ -1,3 +1,14 @@
 ﻿@{
     Layout = "_Layout";
+
+    var routeData = this.ViewContext.RouteData.Values;
+    var languageDict = new Dictionary<string, string>();
+    var languageId = routeData["LanguageId"];
+    string routeAction = routeData["action"].ToString();
+    if (languageId != null)
+    {
+        languageDict.Add("LanguageId", languageId.ToString());
+    }
+
+    ViewBag.languageDict = languageDict;
 }

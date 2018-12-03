@@ -3544,6 +3544,7 @@
     <Content Include="Content\kindeditor\lib\firebug-lite\build\chrome-extension-beta\manifest.json" />
     <Content Include="Content\kindeditor\lib\firebug-lite\build\chrome-extension\manifest.json" />
     <Content Include="Content\kindeditor\lib\firebug-lite\build\compress.bat" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\远程.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />

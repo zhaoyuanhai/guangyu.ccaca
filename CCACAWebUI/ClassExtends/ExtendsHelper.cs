@@ -50,5 +50,20 @@ namespace CCACAWebUI.ClassExtends
             string temp = r.Replace(html, string.Empty);
             return temp;
         }
+
+        public static Dictionary<string, string> RouteTo(this Dictionary<string, string> pairs, object obj)
+        {
+            obj.GetType().GetProperties().ForEach((index, item) =>
+            {
+                if (pairs.ContainsKey(item.Name))
+                {
+                    pairs[item.Name] = item.GetValue(obj)?.ToString();
+                }
+                else
+                    pairs.Add(item.Name, item.GetValue(obj)?.ToString());
+            });
+
+            return pairs;
+        }
     }
 }
