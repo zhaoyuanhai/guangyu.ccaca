@@ -14,6 +14,9 @@ using System.Collections;
 using System.Globalization;
 using Abp.Web.Security.AntiForgery;
 using Abp.Web.Models;
+using System.Net.Http;
+using System.Net;
+using System.Configuration;
 
 namespace MyProject.Web.Controllers
 {
@@ -528,6 +531,7 @@ namespace MyProject.Web.Controllers
                 dict.Value = model.Value;
 
             dbContent.SaveChanges();
+            Refresh();
             return Ok();
         }
 
@@ -541,6 +545,7 @@ namespace MyProject.Web.Controllers
         {
             dbContent.Entry(model).State = EntityState.Modified;
             dbContent.SaveChanges();
+            Refresh();
             return Ok();
         }
 
@@ -549,7 +554,18 @@ namespace MyProject.Web.Controllers
             var dicts = dbContent.WordDicts.Where(x => x.Word == word);
             dbContent.WordDicts.RemoveRange(dicts);
             dbContent.SaveChanges();
+            Refresh();
             return Ok();
+        }
+
+        /// <summary>
+        /// 刷新客户端的翻译字典
+        /// </summary>
+        private void Refresh()
+        {
+            var url = ConfigurationManager.AppSettings["RefreshApi"];
+            var request = WebRequest.Create(url);
+            var response = request.GetResponse();
         }
         #endregion
 

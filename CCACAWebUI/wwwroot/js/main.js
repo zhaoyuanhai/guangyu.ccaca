@@ -59,8 +59,8 @@ $(function () {
 
 /**
  * 是否显示登录框
- * @param {boolean} isShow
- * @param {string} returnUrl
+ * @param {boolean} isShow 是否展示
+ * @param {string} returnUrl 之前的Url
  */
 function Login(isShow, returnUrl) {
     if (isShow) {
@@ -83,6 +83,20 @@ function Login(isShow, returnUrl) {
             form.attr("action", result);
         }
     } else {
-        $(".login-container").hide()
+        $(".login-container").hide();
     }
+}
+
+function __(key) {
+    var text = null;
+    var language = $("#language").val();
+    $.ajax({
+        url: "/GetWord/0/" + language + "/Help",
+        async: false,
+        data: { word: key },
+        success: function (res) {
+            text = res;
+        }
+    });
+    return text;
 }

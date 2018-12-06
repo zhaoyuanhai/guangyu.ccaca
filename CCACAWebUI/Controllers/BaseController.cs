@@ -42,22 +42,24 @@ namespace CCACAWebUI.Controllers
             if (language == LanguageEmun.CHINESE)
                 return t;
 
+            var lan = (int)language;
+
             Type type = typeof(T);
             string tableName = type.Name;
             PropertyInfo[] fileds = type.GetProperties();
-            string[] strFiles = fileds.Select(f => f.Name).ToArray();
+            string[] strFileds = fileds.Select(f => f.Name).ToArray();
             int id = Convert.ToInt32(type.GetProperty("id", BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase).GetValue(t, null));
 
-            var refsDatas = DbContext.Refs.ToList();
-            foreach (string fileName in strFiles)
+            var refsDatas = DbContext.Refs.Where(x => x.TableName == tableName && x.RowID == id).ToList();
+            foreach (string fileName in strFileds)
             {
                 var prop = type.GetProperty(fileName);
                 var entity = refsDatas.Where(m => m.TableName == tableName &&
                     m.FiledName == fileName &&
                     m.RowID == id &&
-                    m.LanguageID == (int)language).FirstOrDefault();
+                    m.LanguageID == lan).FirstOrDefault();
                 if (entity != null)
-                    type.GetProperty(fileName).SetValue(t, Convert.ChangeType(entity.RowValue, prop.PropertyType));
+                    prop.SetValue(t, Convert.ChangeType(entity.RowValue, prop.PropertyType));
             }
             return t;
         }

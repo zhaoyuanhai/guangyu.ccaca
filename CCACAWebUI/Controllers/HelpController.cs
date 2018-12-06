@@ -197,5 +197,12 @@ namespace CCACAWebUI.Controllers
             DictCache.InitWordDict();
             return Json(new { Success = true });
         }
+
+        [HttpGet]
+        public IActionResult GetWord(string word)
+        {
+            var dict = DictCache.GetDict((int)Language, word);
+            return Json(dict == null ? word : dict.Value);
+        }
     }
 }
