@@ -33,6 +33,7 @@ namespace CCACAWebUI.Controllers
             Translate(homeConfigList, Language);
             Translate(carousel, Language);
             Translate(contact, Language);
+            Translate(projectInfo, Language);
 
             var information = PageingInfomation(1, 6, out int count);
             return View(new IndexModel()
@@ -89,6 +90,8 @@ namespace CCACAWebUI.Controllers
                 .Take(pageCount).ToList();
             ViewBag.PageCount = Math.Ceiling(DbContext.NewActive.Count() / (pageCount * 1.0));
             ViewBag.pageIndex = pageIndex;
+
+            Translate(datas, Language);
 
             return View(datas);
         }

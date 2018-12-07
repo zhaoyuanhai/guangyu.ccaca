@@ -579,10 +579,10 @@
                 });
             },
 
-            getNewActive: function (id) {
+            getNewActive: function (id, langId) {
                 return $.ajax({
                     url: "/Service/GetNewActive",
-                    data: { id: id },
+                    data: { id: id, langId: langId },
                     type: "GET"
                 });
             },
@@ -633,7 +633,7 @@
                     type: "POST",
                     processData: false,
                     contentType: false
-                })
+                });
             }
         };
 

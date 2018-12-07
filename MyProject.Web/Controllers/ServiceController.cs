@@ -563,9 +563,13 @@ namespace MyProject.Web.Controllers
         /// </summary>
         private void Refresh()
         {
-            var url = ConfigurationManager.AppSettings["RefreshApi"];
-            var request = WebRequest.Create(url);
-            var response = request.GetResponse();
+            try
+            {
+                var url = ConfigurationManager.AppSettings["RefreshApi"];
+                WebClient client = new WebClient();
+                var result = client.DownloadString(url);
+            }
+            catch { }
         }
         #endregion
 
@@ -577,9 +581,10 @@ namespace MyProject.Web.Controllers
         }
 
         [ValidateInput(false)]
-        public ActionResult GetNewActive(int id)
+        public ActionResult GetNewActive(int id, LanguageModel langId)
         {
             var model = dbContent.NewActive.FirstOrDefault(n => n.ID == id);
+            Translate(model, langId);
             return JsonMode(model);
         }
 
